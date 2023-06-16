@@ -1,29 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema ({
-    name: {
+const servicioSchema = new Schema ({
+    idEmpresa: {
         type: String,
         required: true,
         trim: true
     },
-    email: {
-        type: String,
-        required: true,
-        trim: true,
-        unique: true
-    },
-    psw: {
+    nombre: {
         type: String,
         required: true,
         trim: true
     },
-    tipo: {
+    color: {
         type: String,
         required: true,
+        trim: true
     }
 }, {
     timestamps: true //para guardar la fecha de creación
 });
 
-module.exports = userSchema;
+module.exports = mongoose.model('Servicio', servicioSchema);

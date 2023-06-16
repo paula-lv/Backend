@@ -48,7 +48,8 @@ exports.loginUser = (req, res, next)=> {
                     name: user.name,
                     ameil: user.email,
                     accessToken: accessToken,
-                    expiresIn: expiresIn
+                    expiresIn: expiresIn,
+                    tipo: user.tipo
                 }
 
                 res.send({dataUser});

@@ -21,7 +21,6 @@ app.use(bodyParserURLEncoded);
 app.use(cors());
 
 //RUTAS DE LA API
-
 app.use('/api', router)
 authRoutes(router);
 empresaRoutes(router);
@@ -29,4 +28,5 @@ router.get('/', (req, res) => {
     res.send('Hello from the other side')
 });
 app.use(router);
+
 app.listen(properties.PORT, () => console.log(`Server running on port ${properties.PORT}`));

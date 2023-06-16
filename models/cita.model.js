@@ -1,54 +1,45 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const empresaSchema = new Schema ({
-    nombre: {
+const citaSchema = new Schema ({
+    idServicio: {
         type: String,
         required: true,
         trim: true
     },
-    telefono: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    direccion: {
+    idEmpresa: {
         type: String,
         required: true,
         trim: true
     },
-    descripcion: {
+    idEmpleado: {
         type: String,
         required: true,
         trim: true
     },
-    logo: {
-        type: String,
-        required: false,
+    fecha: {
+        type: Date,
+        required: true,
         trim: true
     },
-    cabecera: {
+    estado: {
         type: String,
         required: true,
         trim: true
     },
-    color: {
+    valoracion: {
         type: String,
         required: true,
         trim: true
     },
-    emailAdmin: {
+    mensaje: {
         type: String,
         required: true,
         trim: true
-    },
-    pswAdmin: {
-        type: String,
-        required: true,
-        trim: true
-    },
+    }
+
 }, {
     timestamps: true //para guardar la fecha de creación
 });
 
-module.exports = mongoose.model('Empresa', empresaSchema);
+module.exports = mongoose.model('Cita', citaSchema);
