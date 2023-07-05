@@ -5,7 +5,8 @@ const empresaSchema = new Schema ({
     nombre: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
     },
     telefono: {
         type: String,
@@ -14,12 +15,12 @@ const empresaSchema = new Schema ({
     },
     direccion: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     descripcion: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     logo: {
@@ -29,20 +30,10 @@ const empresaSchema = new Schema ({
     },
     cabecera: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     color: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    emailAdmin: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    pswAdmin: {
         type: String,
         required: true,
         trim: true

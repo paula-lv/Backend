@@ -1,42 +1,29 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema ({
-    name: {
+const resensSchema = new Schema ({
+    idEmpresa: {
         type: String,
         required: true,
         trim: true
     },
-    email: {
+    idUsuario: {
         type: String,
         required: true,
         trim: true,
-        unique: true
     },
-    psw: {
-        type: String,
+    estrellas: {
+        type: Number,
         required: true,
         trim: true
     },
-    tipo: {
-        type: String,
-        required: true,
-    },
-    prov: {
+    mensaje: {
         type: String,
         required: true,
         trim: true
-    },
-    pobl: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    idEmpresa: {
-        type: String,
-    },
+    }
 }, {
     timestamps: true //para guardar la fecha de creación
 });
 
-module.exports = userSchema;
+module.exports = mongoose.model('Resena', resensSchema);

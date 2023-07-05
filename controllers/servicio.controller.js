@@ -1,12 +1,14 @@
 const Servicio = require('../models/servicio.model')
 const bcrypt = require('bcryptjs');
+const Usuario = require('../auth/auth.dao')
 
 exports.crearServicio = async(req, res) => {
     try {
-        let Servicio;
+        let newServicio;
+        let usuario = await Usuario.findOne( { email: req.body.email } );
 
         newServicio = new Servicio({
-            idEmpresa: req.body.idEmpresa,
+            idEmpresa: usuario.idEmpresa,
             nombre: req.body.nombre,
             color: req.body.color
         });
@@ -22,8 +24,8 @@ exports.crearServicio = async(req, res) => {
 
 exports.obtenerServicios = async(req, res) => {
     try {
-
-        const servicio = await Servicio.find();
+        let usuario = await Usuario.findOne( { email: req.query.email } );
+        const servicio = await Servicio.find( { idEmpresa: usuario.idEmpresa } );
         res.json(servicio);
 
     } catch (error) {

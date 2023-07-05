@@ -1,12 +1,14 @@
 const Empleado = require('../models/empleado.model')
-const bcrypt = require('bcryptjs');
+const Usuario = require('../auth/auth.dao')
 
 exports.crearEmpleado = async(req, res) => {
     try {
         let newEmpleado;
 
+        let usuario = await Usuario.findOne( { email: req.body.email } );
+
         newEmpleado = new Empleado({
-            idEmpresa: req.body.idEmpresa,
+            idEmpresa: usuario.idEmpresa,
             nombre: req.body.nombre,
             color: req.body.color
         });
@@ -22,8 +24,9 @@ exports.crearEmpleado = async(req, res) => {
 
 exports.obtenerEmpleados = async(req, res) => {
     try {
+        let usuario = await Usuario.findOne( { email: req.query.email } );
 
-        const empleados = await Empleado.find();
+        const empleados = await Empleado.find( {idEmpresa: usuario.idEmpresa} );
         res.json(empleados);
 
     } catch (error) {

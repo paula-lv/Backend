@@ -1,4 +1,6 @@
+const cookieParser = require('cookie-parser');
 const Empresa = require('../models/empresa.model')
+const Usuario = require('../auth/auth.dao')
 const bcrypt = require('bcryptjs');
 
 exports.crearEmpresa = async(req, res) => {
@@ -13,8 +15,6 @@ exports.crearEmpresa = async(req, res) => {
             logo: "",
             cabecera: req.body.cabecera,
             color: req.body.color,
-            emailAdmin: req.body.emailAdmin,
-            pswAdmin: bcrypt.hashSync(req.body.pswAdmin)
         });
     
         await newEmpresa.save();
@@ -28,7 +28,6 @@ exports.crearEmpresa = async(req, res) => {
 
 exports.obtenerEmpresas = async(req, res) => {
     try {
-
         const empresas = await Empresa.find();
         res.json(empresas);
 
@@ -66,7 +65,8 @@ exports.actualizarEmpresa = async(req, res) => {
 
 exports.obtenerEmpresa = async(req, res) => {
     try {
-        let empresa = await Empresa.findById(req.params.id);
+        let usuario = await Usuario.findOne( { email: req.body.email } );
+        let empresa = await Empresa.findOne( { _id: usuario.idEmpresa } );
 
         if(!empresa)
             res.status(404).json({msg : 'No existe la empresa'});
@@ -81,12 +81,12 @@ exports.obtenerEmpresa = async(req, res) => {
 
 exports.eliminarEmpresa = async(req, res) => {
     try {
-        let empresa = await Empresa.findById(req.params.id);
+        let empresa = await Empresa.findOne( { email: req.body.email } );
 
         if(!empresa)
             res.status(404).json({msg : 'No existe la empresa'});
 
-        await Empresa.findOneAndRemove({ _id: req.params.id });
+        await Empresa.findOneAndRemove({ email: req.body.email });
 
         res.json({ msg : 'Empresa eliminada con éxito'});
 
