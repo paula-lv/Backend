@@ -10,6 +10,7 @@ exports.crearServicio = async(req, res) => {
         newServicio = new Servicio({
             idEmpresa: usuario.idEmpresa,
             nombre: req.body.nombre,
+            precio: req.body.precio,
             color: req.body.color
         });
     
@@ -37,14 +38,15 @@ exports.obtenerServicios = async(req, res) => {
 exports.actualizarServicio = async(req, res) => {
     try {
 
-        const { nombre, color } = req.body;
+        const { nombre,precio,  color } = req.body;
         let servicio = await Servicio.findById(req.params.id);
 
         if(!servicio)
             res.status(404).json({msg : 'No existe el servicio'});
 
             servicio.nombre = nombre;
-        servicio.color = color;
+            servicio.color = color;
+            servicio.precio = precio;
 
         servicio = await Servicio.findOneAndUpdate({ _id: req.params.id }, servicio, { new: true});
         res.json(servicio);

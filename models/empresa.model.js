@@ -6,6 +6,11 @@ const empresaSchema = new Schema ({
         type: String,
         required: true,
         trim: true,
+    },
+    cif: {
+        type: String,
+        required: true,
+        trim: true,
         unique: true
     },
     telefono: {
@@ -18,17 +23,7 @@ const empresaSchema = new Schema ({
         required: false,
         trim: true
     },
-    descripcion: {
-        type: String,
-        required: false,
-        trim: true
-    },
     logo: {
-        type: String,
-        required: false,
-        trim: true
-    },
-    cabecera: {
         type: String,
         required: false,
         trim: true

@@ -9,7 +9,8 @@ exports.crear = async(req, res) => {
             idEmpresa: req.body.idEmpresa,
             idServicio: req.body.idServicio,
             idEmpleado: req.body.idEmpleado,
-            fecha: req.body.nombre,
+            fecha_desde: req.body.fecha_desde,
+            fecha_hasta: req.body.fecha_hasta,
             estado: req.body.estado,
             valoracion: req.body.valoracion || '',
             mensaje: req.body.mensaje || '',
@@ -47,7 +48,8 @@ exports.actualizarCita = async(req, res) => {
 
             idServicio = idServicio;
             idEmpleado = idEmpleado;
-            fecha = fecha;
+            fecha_desde = fecha_desde;
+            fecha_hasta = fecha_hasta;
             estado = estado;
             valoracion = valoracion;
             mensaje = mensaje;

@@ -17,7 +17,12 @@ const citaSchema = new Schema ({
         required: true,
         trim: true
     },
-    fecha: {
+    fecha_desde: {
+        type: Date,
+        required: true,
+        trim: true
+    },
+    fecha_desde: {
         type: Date,
         required: true,
         trim: true

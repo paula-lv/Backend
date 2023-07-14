@@ -7,6 +7,10 @@ const userSchema = new Schema ({
         required: true,
         trim: true
     },
+    telefono: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -35,6 +39,7 @@ const userSchema = new Schema ({
     idEmpresa: {
         type: String,
     },
+    
 }, {
     timestamps: true //para guardar la fecha de creación
 });

@@ -68,6 +68,8 @@ exports.loginUser = (req, res, next)=> {
     
     User.findOne({email: userData.email}, async (err, user)=> {
         let tipoUsuario;
+        let empresa;
+        let cif = -1;
         if (err) return res.status(500).send('Server error');
         if (!user) { //no existe el email
             res.status(409).send({message: 'Hubo un error'});
@@ -82,8 +84,11 @@ exports.loginUser = (req, res, next)=> {
                     sameSite: 'lax',
                     httpOnly: false,
                 });
-                if(user.tipo == 1)
+                if(user.tipo == 1) {
                     tipoUsuario = 83648205;
+                    empresa = await Empresa.findById(user.idEmpresa);
+                    cif = empresa.cif;
+                }
                 if(user.tipo == 0)
                     tipoUsuario = 93847561;
                 await res.cookie("tipo-usuario", tipoUsuario, {
@@ -97,6 +102,7 @@ exports.loginUser = (req, res, next)=> {
                     email: user.email,
                     tipo: user.tipo,
                     idEmpresa: user.idEmpresa,
+                    cif: cif
                 }
 
                 res.send({dataUser});
@@ -106,6 +112,17 @@ exports.loginUser = (req, res, next)=> {
             }
         }
     })
+}
+
+exports.obtenerUsuario = async(req, res) => {
+    try {
+        const usuario = await User.findOne({email: req.params.email});
+        res.json(usuario);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('No se encuentra el usuario')
+    }
 }
 
 exports.logOut = (req, res) => {

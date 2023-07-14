@@ -11,9 +11,7 @@ exports.crearEmpresa = async(req, res) => {
             nombre: req.body.nombre,
             telefono: req.body.telefono,
             direccion: req.body.direccion,
-            descripcion: req.body.descripcion,
             logo: "",
-            cabecera: req.body.cabecera,
             color: req.body.color,
         });
     
@@ -40,7 +38,7 @@ exports.obtenerEmpresas = async(req, res) => {
 exports.actualizarEmpresa = async(req, res) => {
     try {
 
-        const { nombre, telefono, direccion, descripcion, logo, cabecera, color } = req.body;
+        const { nombre, telefono, direccion, logo, color } = req.body;
         let empresa = await Empresa.findById(req.params.id);
 
         if(!empresa)
@@ -49,9 +47,7 @@ exports.actualizarEmpresa = async(req, res) => {
         empresa.nombre = nombre;
         empresa.telefono = telefono;
         empresa.direccion = direccion;
-        empresa.descripcion = descripcion;
         empresa.logo = logo;
-        empresa.cabecera = cabecera;
         empresa.color = color;
 
         empresa = await Empresa.findOneAndUpdate({ _id: req.params.id }, empresa, { new: true});
