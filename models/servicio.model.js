@@ -20,6 +20,11 @@ const servicioSchema = new Schema ({
         type: String,
         required: true,
         trim: true
+    },
+    duracion: {
+        type: String,
+        required: true,
+        trim: true
     }
 }, {
     timestamps: true //para guardar la fecha de creación

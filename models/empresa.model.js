@@ -7,6 +7,11 @@ const empresaSchema = new Schema ({
         required: true,
         trim: true,
     },
+    emailAdmin: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     cif: {
         type: String,
         required: true,
@@ -23,6 +28,16 @@ const empresaSchema = new Schema ({
         required: false,
         trim: true
     },
+    prov: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    pobl: {
+        type: String,
+        required: false,
+        trim: true
+    },
     logo: {
         type: String,
         required: false,
@@ -31,6 +46,22 @@ const empresaSchema = new Schema ({
     color: {
         type: String,
         required: true,
+        trim: true
+    },
+    img1: {
+        type: String,
+        trim: true
+    },
+    img2: {
+        type: String,
+        trim: true
+    },
+    img3: {
+        type: String,
+        trim: true
+    },
+    horario: {
+        type: String,
         trim: true
     },
 }, {

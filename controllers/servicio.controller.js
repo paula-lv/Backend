@@ -11,7 +11,8 @@ exports.crearServicio = async(req, res) => {
             idEmpresa: usuario.idEmpresa,
             nombre: req.body.nombre,
             precio: req.body.precio,
-            color: req.body.color
+            color: req.body.color,
+            duracion: req.body.duracion
         });
     
         await newServicio.save();
@@ -38,7 +39,7 @@ exports.obtenerServicios = async(req, res) => {
 exports.actualizarServicio = async(req, res) => {
     try {
 
-        const { nombre,precio,  color } = req.body;
+        const { nombre,precio,  color, duracion } = req.body;
         let servicio = await Servicio.findById(req.params.id);
 
         if(!servicio)
@@ -47,6 +48,7 @@ exports.actualizarServicio = async(req, res) => {
             servicio.nombre = nombre;
             servicio.color = color;
             servicio.precio = precio;
+            servicio.duracion = duracion;
 
         servicio = await Servicio.findOneAndUpdate({ _id: req.params.id }, servicio, { new: true});
         res.json(servicio);

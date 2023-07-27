@@ -17,12 +17,17 @@ const citaSchema = new Schema ({
         required: true,
         trim: true
     },
+    idUsuario: {
+        type: String,
+        required: true,
+        trim: true
+    },
     fecha_desde: {
         type: Date,
         required: true,
         trim: true
     },
-    fecha_desde: {
+    fecha_hasta: {
         type: Date,
         required: true,
         trim: true
@@ -34,12 +39,10 @@ const citaSchema = new Schema ({
     },
     valoracion: {
         type: String,
-        required: true,
         trim: true
     },
     mensaje: {
         type: String,
-        required: true,
         trim: true
     }
 

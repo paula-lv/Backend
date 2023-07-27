@@ -5,6 +5,7 @@ const empresaRoutes = require('./routes/empresa.routes');
 const servicioRoutes = require('./routes/servicio.routes');
 const empleadoRoutes = require('./routes/empleado.routes');
 const resenaRoutes = require('./routes/resena.routes');
+const citaRoutes = require('./routes/cita.routes')
 
 const express = require('express');
 const properties = require('./config/properties');
@@ -37,6 +38,7 @@ empresaRoutes(router);
 servicioRoutes(router);
 empleadoRoutes(router);
 resenaRoutes(router);
+citaRoutes(router);
 router.get('/', (req, res) => {
     res.send('Hello from the other side')
 });

@@ -39,7 +39,7 @@ exports.createUser = async ( req, res )=> {
         email: req.body.email, 
         psw: bcrypt.hashSync(req.body.psw),
         tipo: req.body.tipo,
-        tlf: req.body.tlf,
+        telefono: req.body.tlf,
         prov: req.body.prov,
         pobl: req.body.pobl,
         idEmpresa: id,
@@ -102,7 +102,10 @@ exports.loginUser = (req, res, next)=> {
                     email: user.email,
                     tipo: user.tipo,
                     idEmpresa: user.idEmpresa,
-                    cif: cif
+                    cif: cif,
+                    telefono: user.telefono,
+                    provincia: user.prov,
+                    poblacion: user.pobl
                 }
 
                 res.send({dataUser});

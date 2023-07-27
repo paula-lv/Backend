@@ -27,6 +27,7 @@ exports.crearResena = async(req, res) => {
 
 exports.obtenerResenas = async(req, res) => {
     try {
+
         let empresa = await Empresa.findOne( { cif: req.query.cif } );
         let usuarios = new Array();
         const resenas = await Resena.find( {idEmpresa: empresa._id} );
@@ -36,6 +37,20 @@ exports.obtenerResenas = async(req, res) => {
         }
 
         res.send([resenas, usuarios]);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Ha habido un error')
+    }
+}
+
+exports.obtenerResenasUsuario = async(req, res) => {
+    try {
+        
+        let usuario = await Usuario.findOne( { email: req.query.email } );
+        const resenas = await Resena.find( {idUsuarip: usuario._id} );
+
+        res.json(resenas);
 
     } catch (error) {
         console.log(error);
